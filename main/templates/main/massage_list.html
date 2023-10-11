@@ -1,0 +1,23 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    <main>
+
+        <a type="button" href="{% url 'main:messenger_create' %}" class="btn btn-outline-primary">Создать новую
+            рассылку</a>
+        <a type="button" href="{% url 'main:home' %}" class="btn btn-outline-primary">Вернуться домомй</a>
+
+        <div class="my-3 p-3 bg-body rounded shadow-sm">
+            <h4 class="border-bottom pb-2 mb-0">Рассылки</h4>
+            {% for object in object_list %}
+                <div class="d-flex text-body-secondary pt-3">
+                    <p class="pb-3 mb-0 lh-sm border-bottom">
+                        <strong><a href="{% url 'main:messenger_view' object.pk %}"
+                                   class="d-block text-gray-dark">{{ object }}</a></strong>
+                        {{ object.subject_body | truncatechars:134 }}
+                    </p>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock %}
